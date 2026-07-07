@@ -1,0 +1,25 @@
+name: shared
+description: "A new Flutter package project."
+version: 0.0.1
+homepage:
+
+resolution: workspace
+
+environment:
+  sdk: ^3.10.1
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.9
+  flutter_svg: ^2.3.0
+  shimmer: ^3.0.0
+  cached_network_image: ^3.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:

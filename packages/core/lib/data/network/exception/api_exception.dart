@@ -3,11 +3,7 @@ import 'package:dio/dio.dart';
 import 'base_exception.dart';
 
 class ApiException extends BaseException {
-  const ApiException({
-    required super.message,
-    super.code,
-    super.statusCode,
-  });
+  const ApiException({required super.message, super.code, super.statusCode});
 
   factory ApiException.fromDioException(DioException dioException) {
     String message = 'Đã có lỗi xảy ra';
@@ -25,6 +21,7 @@ class ApiException extends BaseException {
         case DioExceptionType.connectionTimeout:
         case DioExceptionType.sendTimeout:
         case DioExceptionType.receiveTimeout:
+        case DioExceptionType.transformTimeout:
           message = 'Kết nối bị timeout';
           break;
         case DioExceptionType.connectionError:
@@ -45,10 +42,6 @@ class ApiException extends BaseException {
       }
     }
 
-    return ApiException(
-      message: message,
-      code: code,
-      statusCode: statusCode,
-    );
+    return ApiException(message: message, code: code, statusCode: statusCode);
   }
 }

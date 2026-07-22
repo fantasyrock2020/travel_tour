@@ -6,14 +6,11 @@
 import 'dart:async' as _i687;
 
 import 'package:core/core.dart' as _i494;
-import 'package:data/datasource/api/mapper/todo_mapper.dart' as _i683;
-import 'package:data/datasource/api/mapper/user_mapper.dart' as _i617;
-import 'package:data/datasource/api/todo/todo_api.dart' as _i375;
-import 'package:data/datasource/api/user/user_api.dart' as _i884;
+import 'package:data/datasource/api/mapper/place_mapper.dart' as _i1036;
+import 'package:data/datasource/api/place/place_api.dart' as _i127;
 import 'package:data/di/data.injector.dart' as _i119;
-import 'package:data/repositories/todo_repository_impl.dart' as _i366;
-import 'package:data/repositories/user_repository_impl.dart' as _i537;
-import 'package:domain/repositories/repositories.dart' as _i604;
+import 'package:data/repositories/place_repository_impl.dart' as _i39;
+import 'package:domain/repositories/place_repository.dart' as _i330;
 import 'package:injectable/injectable.dart' as _i526;
 
 class DataPackageModule extends _i526.MicroPackageModule {
@@ -21,18 +18,12 @@ class DataPackageModule extends _i526.MicroPackageModule {
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final registerDataModule = _$RegisterDataModule();
-    gh.lazySingleton<_i683.TodoMapper>(() => _i683.TodoMapper());
-    gh.lazySingleton<_i617.UserMapper>(() => _i617.UserMapper());
+    gh.singleton<_i1036.PlaceMapper>(() => _i1036.PlaceMapper());
     gh.lazySingleton<_i494.Dio>(() => registerDataModule.dio());
-    gh.lazySingleton<_i375.TodoApi>(() => _i375.TodoApi(gh<_i494.Dio>()));
-    gh.lazySingleton<_i884.UserApi>(() => _i884.UserApi(gh<_i494.Dio>()));
-    gh.lazySingleton<_i604.TodoRepository>(() => _i366.TodoRepositoryImpl(
-          gh<_i375.TodoApi>(),
-          gh<_i683.TodoMapper>(),
-        ));
-    gh.lazySingleton<_i604.UserRepository>(() => _i537.UserRepositoryImpl(
-          gh<_i884.UserApi>(),
-          gh<_i617.UserMapper>(),
+    gh.lazySingleton<_i127.PlaceApi>(() => _i127.PlaceApi(gh<_i494.Dio>()));
+    gh.lazySingleton<_i330.PlaceRepository>(() => _i39.PlaceRepositoryImpl(
+          gh<_i127.PlaceApi>(),
+          gh<_i1036.PlaceMapper>(),
         ));
   }
 }

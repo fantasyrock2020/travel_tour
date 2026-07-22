@@ -86,7 +86,7 @@ Two additional shared packages provide cross-cutting concerns:
 ## 📁 Project Structure
 
 ```
-project_structure/
+travel_tour/
 ├── lib/                          # 🎨 Presentation Layer
 │   ├── main.dart                 # App entry point
 │   ├── constants/                # App-wide constants & strings
@@ -188,7 +188,7 @@ project_structure/
 
    ```bash
    git clone <repository-url>
-   cd project_structure
+   cd travel_tour
    ```
 
 2. **Install Flutter version (if using FVM)**
@@ -359,13 +359,13 @@ The project includes a **GitHub Actions** CI pipeline (`.github/workflows/flutte
 
 ## 🔄 Renaming the Project
 
-To rename this project from `project_structure` to your desired name:
+To rename this project from `travel_tour` to your desired name:
 
 ### Step 1: Rename the root directory
 
 ```bash
 cd ..
-mv project_structure your_project_name
+mv travel_tour your_project_name
 cd your_project_name
 ```
 
@@ -380,10 +380,10 @@ description: "Your project description"
 
 ```bash
 # Find all occurrences
-grep -r "project_structure" --include="*.dart" .
+grep -r "travel_tour" --include="*.dart" .
 
 # Replace in all Dart files (macOS/Linux)
-find . -name "*.dart" -type f -exec sed -i '' 's/project_structure/your_project_name/g' {} +
+find . -name "*.dart" -type f -exec sed -i '' 's/travel_tour/your_project_name/g' {} +
 ```
 
 ### Step 4: Update Android configuration

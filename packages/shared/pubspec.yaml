@@ -2,6 +2,7 @@ name: shared
 description: "A new Flutter package project."
 version: 0.0.1
 homepage:
+publish_to: none
 
 resolution: workspace
 
@@ -12,6 +13,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  core:
+    path: '../core'
 
   cupertino_icons: ^1.0.9
   flutter_svg: ^2.3.0

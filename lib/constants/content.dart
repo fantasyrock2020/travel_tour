@@ -1,0 +1,776 @@
+import 'package:domain/entities/entities.dart';
+
+final List<Location> sampleLocations = <Location>[
+  const Location(id: 'vungtau', name: 'Vũng Tàu', type: LocationType.tour),
+  const Location(id: 'nhatrang', name: 'Nha Trang', type: LocationType.tour),
+  const Location(id: 'dalat', name: 'Đà Lạt', type: LocationType.tour),
+  const Location(id: 'danang', name: 'Đà Nẵng', type: LocationType.tour),
+  Location(
+    id: 'hcm',
+    name: 'TP.HCM',
+    type: LocationType.province,
+    communes: <Location>[...hcmcCommunesList],
+  ),
+
+  const Location(id: 'hoian', name: 'Hội An', type: LocationType.tour),
+];
+
+final List<Location> hcmcCommunesList = <Location>[
+  // ===== TP. Thủ Đức (12 phường, từ 34 phường cũ) =====
+  const Location(
+    id: 'hiepbinh',
+    name: 'Phường Hiệp Bình',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'tambinh',
+    name: 'Phường Tam Bình',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'thuduc',
+    name: 'Phường Thủ Đức',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'linhxuan',
+    name: 'Phường Linh Xuân',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'longbinh',
+    name: 'Phường Long Bình',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'tangnhonphu',
+    name: 'Phường Tăng Nhơn Phú',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'phuoclong',
+    name: 'Phường Phước Long',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'longphuoc',
+    name: 'Phường Long Phước',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'longtruong',
+    name: 'Phường Long Trường',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức'],
+  ),
+  const Location(
+    id: 'ankhanh',
+    name: 'Phường An Khánh',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức (Quận 2 cũ)'],
+  ),
+  const Location(
+    id: 'binhtrung',
+    name: 'Phường Bình Trưng',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức (Quận 2 cũ)'],
+  ),
+  const Location(
+    id: 'catlai',
+    name: 'Phường Cát Lái',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Thành phố Thủ Đức (Quận 2 cũ)'],
+  ),
+
+  // ===== Quận 1 (4 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'tandinh',
+    name: 'Phường Tân Định',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 1'],
+  ),
+  const Location(
+    id: 'benthanh',
+    name: 'Phường Bến Thành',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 1'],
+  ),
+  const Location(
+    id: 'saigon',
+    name: 'Phường Sài Gòn',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 1'],
+  ),
+  const Location(
+    id: 'cauonglanh',
+    name: 'Phường Cầu Ông Lãnh',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 1'],
+  ),
+
+  // ===== Quận 3 (3 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'banco',
+    name: 'Phường Bàn Cờ',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 3'],
+  ),
+  const Location(
+    id: 'xuanhoa',
+    name: 'Phường Xuân Hòa',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 3'],
+  ),
+  const Location(
+    id: 'nhieuloc',
+    name: 'Phường Nhiêu Lộc',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 3'],
+  ),
+
+  // ===== Quận 4 (3 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'vinhhoi',
+    name: 'Phường Vĩnh Hội',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 4'],
+  ),
+  const Location(
+    id: 'khanhhoi',
+    name: 'Phường Khánh Hội',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 4'],
+  ),
+  const Location(
+    id: 'xomchieu',
+    name: 'Phường Xóm Chiếu',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 4'],
+  ),
+
+  // ===== Quận 5 (3 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'choquan',
+    name: 'Phường Chợ Quán',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 5'],
+  ),
+  const Location(
+    id: 'andong',
+    name: 'Phường An Đông',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 5'],
+  ),
+  const Location(
+    id: 'cholon',
+    name: 'Phường Chợ Lớn',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 5'],
+  ),
+
+  // ===== Quận 6 (4 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'binhtien',
+    name: 'Phường Bình Tiên',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 6'],
+  ),
+  const Location(
+    id: 'binhtay',
+    name: 'Phường Bình Tây',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 6'],
+  ),
+  const Location(
+    id: 'binhphu',
+    name: 'Phường Bình Phú',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 6', 'Quận 8'],
+  ),
+  const Location(
+    id: 'phulam',
+    name: 'Phường Phú Lâm',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 6'],
+  ),
+
+  // ===== Quận 7 (4 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'tanmy',
+    name: 'Phường Tân Mỹ',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 7'],
+  ),
+  const Location(
+    id: 'tanhung',
+    name: 'Phường Tân Hưng',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 7'],
+  ),
+  const Location(
+    id: 'tanthuan',
+    name: 'Phường Tân Thuận',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 7'],
+  ),
+  const Location(
+    id: 'phuthuan',
+    name: 'Phường Phú Thuận',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 7'],
+  ),
+
+  // ===== Quận 8 (3 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'chanhhung',
+    name: 'Phường Chánh Hưng',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 8'],
+  ),
+  const Location(
+    id: 'binhdong',
+    name: 'Phường Bình Đông',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 8', 'Huyện Bình Chánh'],
+  ),
+  const Location(
+    id: 'phudinh',
+    name: 'Phường Phú Định',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 8'],
+  ),
+
+  // ===== Quận 10 (3 phường, từ 11 phường cũ) =====
+  const Location(
+    id: 'vuonlai',
+    name: 'Phường Vườn Lài',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 10'],
+  ),
+  const Location(
+    id: 'dienhong',
+    name: 'Phường Diên Hồng',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 10'],
+  ),
+  const Location(
+    id: 'hoahung',
+    name: 'Phường Hòa Hưng',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 10'],
+  ),
+
+  // ===== Quận 11 (4 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'hoabinh',
+    name: 'Phường Hòa Bình',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 11'],
+  ),
+  const Location(
+    id: 'phutho',
+    name: 'Phường Phú Thọ',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 11'],
+  ),
+  const Location(
+    id: 'binhthoi',
+    name: 'Phường Bình Thới',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 11'],
+  ),
+  const Location(
+    id: 'minhphung',
+    name: 'Phường Minh Phụng',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 11'],
+  ),
+
+  // ===== Quận 12 (5 phường, từ 11 phường cũ) =====
+  const Location(
+    id: 'donghungthuan',
+    name: 'Phường Đông Hưng Thuận',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 12'],
+  ),
+  const Location(
+    id: 'trungmytay',
+    name: 'Phường Trung Mỹ Tây',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 12'],
+  ),
+  const Location(
+    id: 'tanthoihiep',
+    name: 'Phường Tân Thới Hiệp',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 12'],
+  ),
+  const Location(
+    id: 'thoian',
+    name: 'Phường Thới An',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 12'],
+  ),
+  const Location(
+    id: 'anphudong',
+    name: 'Phường An Phú Đông',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận 12'],
+  ),
+
+  // ===== Quận Bình Thạnh (5 phường, từ 15 phường cũ) =====
+  const Location(
+    id: 'giadinh',
+    name: 'Phường Gia Định',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Thạnh'],
+  ),
+  const Location(
+    id: 'binhthanh',
+    name: 'Phường Bình Thạnh',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Thạnh'],
+  ),
+  const Location(
+    id: 'binhloitrung',
+    name: 'Phường Bình Lợi Trung',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Thạnh'],
+  ),
+  const Location(
+    id: 'thanhmytay',
+    name: 'Phường Thạnh Mỹ Tây',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Thạnh'],
+  ),
+  const Location(
+    id: 'binhquoi',
+    name: 'Phường Bình Quới',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Thạnh'],
+  ),
+
+  // ===== Quận Bình Tân (5 phường, từ 10 phường cũ) =====
+  const Location(
+    id: 'binhtan',
+    name: 'Phường Bình Tân',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Tân'],
+  ),
+  const Location(
+    id: 'binhhunghoa',
+    name: 'Phường Bình Hưng Hòa',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Tân', 'Quận Tân Phú'],
+  ),
+  const Location(
+    id: 'binhtridong',
+    name: 'Phường Bình Trị Đông',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Tân'],
+  ),
+  const Location(
+    id: 'anlac',
+    name: 'Phường An Lạc',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Tân'],
+  ),
+  const Location(
+    id: 'tantao',
+    name: 'Phường Tân Tạo',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Bình Tân', 'Huyện Bình Chánh'],
+  ),
+
+  // ===== Quận Gò Vấp (6 phường, từ 12 phường cũ) =====
+  const Location(
+    id: 'hanhthong',
+    name: 'Phường Hạnh Thông',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Gò Vấp'],
+  ),
+  const Location(
+    id: 'annhon',
+    name: 'Phường An Nhơn',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Gò Vấp'],
+  ),
+  const Location(
+    id: 'govap',
+    name: 'Phường Gò Vấp',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Gò Vấp'],
+  ),
+  const Location(
+    id: 'thongtayhoi',
+    name: 'Phường Thông Tây Hội',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Gò Vấp'],
+  ),
+  const Location(
+    id: 'anhoitay',
+    name: 'Phường An Hội Tây',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Gò Vấp'],
+  ),
+  const Location(
+    id: 'anhoidong',
+    name: 'Phường An Hội Đông',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Gò Vấp'],
+  ),
+
+  // ===== Quận Phú Nhuận (3 phường, từ 11 phường cũ) =====
+  const Location(
+    id: 'ducnhuan',
+    name: 'Phường Đức Nhuận',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Phú Nhuận'],
+  ),
+  const Location(
+    id: 'caukieu',
+    name: 'Phường Cầu Kiệu',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Phú Nhuận'],
+  ),
+  const Location(
+    id: 'phunhuan',
+    name: 'Phường Phú Nhuận',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Phú Nhuận'],
+  ),
+
+  // ===== Quận Tân Bình (6 phường, từ 15 phường cũ) =====
+  const Location(
+    id: 'tansonhoa',
+    name: 'Phường Tân Sơn Hòa',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Bình'],
+  ),
+  const Location(
+    id: 'tansonnhat',
+    name: 'Phường Tân Sơn Nhất',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Bình'],
+  ),
+  const Location(
+    id: 'tanhoa',
+    name: 'Phường Tân Hòa',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Bình'],
+  ),
+  const Location(
+    id: 'bayhien',
+    name: 'Phường Bảy Hiền',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Bình'],
+  ),
+  const Location(
+    id: 'tanbinh',
+    name: 'Phường Tân Bình',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Bình'],
+  ),
+  const Location(
+    id: 'tanson',
+    name: 'Phường Tân Sơn',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Bình'],
+  ),
+
+  // ===== Quận Tân Phú (5 phường, từ 11 phường cũ) =====
+  const Location(
+    id: 'taythanh',
+    name: 'Phường Tây Thạnh',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Phú'],
+  ),
+  const Location(
+    id: 'tansonnhi',
+    name: 'Phường Tân Sơn Nhì',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Phú'],
+  ),
+  const Location(
+    id: 'phuthohoa',
+    name: 'Phường Phú Thọ Hòa',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Phú'],
+  ),
+  const Location(
+    id: 'phuthanh',
+    name: 'Phường Phú Thạnh',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Phú'],
+  ),
+  const Location(
+    id: 'tanphu',
+    name: 'Phường Tân Phú',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Quận Tân Phú'],
+  ),
+
+  // ===== Huyện Bình Chánh (7 xã, từ 16 đơn vị cũ) =====
+  const Location(
+    id: 'vinhloc',
+    name: 'Xã Vĩnh Lộc',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Bình Chánh'],
+  ),
+  const Location(
+    id: 'tanvinhloc',
+    name: 'Xã Tân Vĩnh Lộc',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Bình Chánh', 'Quận Bình Tân'],
+  ),
+  const Location(
+    id: 'binhloi',
+    name: 'Xã Bình Lợi',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Bình Chánh'],
+  ),
+  const Location(
+    id: 'tannhut',
+    name: 'Xã Tân Nhựt',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Bình Chánh', 'Quận Bình Tân', 'Quận 8'],
+  ),
+  const Location(
+    id: 'binhchanh',
+    name: 'Xã Bình Chánh',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Bình Chánh'],
+  ),
+  const Location(
+    id: 'hunglong',
+    name: 'Xã Hưng Long',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Bình Chánh'],
+  ),
+  const Location(
+    id: 'binhhung',
+    name: 'Xã Bình Hưng',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Bình Chánh', 'Quận 8'],
+  ),
+
+  // ===== Huyện Củ Chi (7 xã, từ 21 đơn vị cũ) =====
+  const Location(
+    id: 'annhontay',
+    name: 'Xã An Nhơn Tây',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Củ Chi'],
+  ),
+  const Location(
+    id: 'thaimy',
+    name: 'Xã Thái Mỹ',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Củ Chi'],
+  ),
+  const Location(
+    id: 'nhuanduc',
+    name: 'Xã Nhuận Đức',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Củ Chi'],
+  ),
+  const Location(
+    id: 'tananhoi',
+    name: 'Xã Tân An Hội',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Củ Chi'],
+  ),
+  const Location(
+    id: 'cuchi',
+    name: 'Xã Củ Chi',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Củ Chi'],
+  ),
+  const Location(
+    id: 'phuhoadong',
+    name: 'Xã Phú Hòa Đông',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Củ Chi'],
+  ),
+  const Location(
+    id: 'binhmy',
+    name: 'Xã Bình Mỹ',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Củ Chi'],
+  ),
+
+  // ===== Huyện Cần Giờ (4 xã, từ 7 đơn vị cũ) =====
+  const Location(
+    id: 'binhkhanh',
+    name: 'Xã Bình Khánh',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Cần Giờ'],
+  ),
+  const Location(
+    id: 'cangio',
+    name: 'Xã Cần Giờ',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Cần Giờ'],
+  ),
+  const Location(
+    id: 'anthoidong',
+    name: 'Xã An Thới Đông',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Cần Giờ'],
+  ),
+  const Location(
+    id: 'thanhan',
+    name: 'Xã Thạnh An',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Cần Giờ'],
+  ),
+
+  // ===== Huyện Hóc Môn (4 xã, từ 11 đơn vị cũ) =====
+  const Location(
+    id: 'hocmon',
+    name: 'Xã Hóc Môn',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Hóc Môn'],
+  ),
+  const Location(
+    id: 'badiem',
+    name: 'Xã Bà Điểm',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Hóc Môn'],
+  ),
+  const Location(
+    id: 'xuanthoison',
+    name: 'Xã Xuân Thới Sơn',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Hóc Môn'],
+  ),
+  const Location(
+    id: 'dongthanh',
+    name: 'Xã Đông Thạnh',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Hóc Môn'],
+  ),
+
+  // ===== Huyện Nhà Bè (2 xã, từ 7 đơn vị cũ) =====
+  const Location(
+    id: 'nhabe',
+    name: 'Xã Nhà Bè',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Nhà Bè'],
+  ),
+  const Location(
+    id: 'hiepphuoc',
+    name: 'Xã Hiệp Phước',
+    type: LocationType.commune,
+    parentId: 'hcm',
+    previousDistricts: <String>['Huyện Nhà Bè'],
+  ),
+];

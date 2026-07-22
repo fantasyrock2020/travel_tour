@@ -18,8 +18,11 @@ extension StringExtension on String? {
     }
     return value
         .split(' ')
-        .map((String word) =>
-            word.isEmpty ? '' : word[0].toUpperCase() + word.substring(1).toLowerCase())
+        .map(
+          (String word) => word.isEmpty
+              ? ''
+              : word[0].toUpperCase() + word.substring(1).toLowerCase(),
+        )
         .join(' ');
   }
 
@@ -90,8 +93,7 @@ extension StringExtension on String? {
     if (parts.isEmpty) {
       return value;
     }
-    return parts.first +
-        parts.skip(1).map((String e) => e.capitalize()).join();
+    return parts.first + parts.skip(1).map((String e) => e.capitalize()).join();
   }
 
   String get toSnakeCase {
@@ -100,7 +102,9 @@ extension StringExtension on String? {
       return '';
     }
     return value.replaceAllMapped(
-        RegExp('([A-Z])'), (Match m) => '_${m[0]!.toLowerCase()}');
+      RegExp('([A-Z])'),
+      (Match m) => '_${m[0]!.toLowerCase()}',
+    );
   }
 
   String truncate(int maxLength) {
@@ -114,4 +118,39 @@ extension StringExtension on String? {
   String get onlyDigits => this?.replaceAll(RegExp('[^0-9]'), '') ?? '';
 
   String get onlyLetters => this?.replaceAll(RegExp('[^a-zA-Z]'), '') ?? '';
+
+  String? removeVietnameseDiacritics() {
+    if (this == null) {
+      return null;
+    }
+    const List<List<String>> patterns = <List<String>>[
+      <String>['[àáạảãâầấậẩẫăằắặẳẵ]', 'a'],
+      <String>['[ÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴ]', 'A'],
+      <String>['[èéẹẻẽêềếệểễ]', 'e'],
+      <String>['[ÈÉẸẺẼÊỀẾỆỂỄ]', 'E'],
+      <String>['[ìíịỉĩ]', 'i'],
+      <String>['[ÌÍỊỈĨ]', 'I'],
+      <String>['[òóọỏõôồốộổỗơờớợởỡ]', 'o'],
+      <String>['[ÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠ]', 'O'],
+      <String>['[ùúụủũưừứựửữ]', 'u'],
+      <String>['[ÙÚỤỦŨƯỪỨỰỬỮ]', 'U'],
+      <String>['[ỳýỵỷỹ]', 'y'],
+      <String>['[ỲÝỴỶỸ]', 'Y'],
+      <String>['đ', 'd'],
+      <String>['Đ', 'D'],
+    ];
+
+    String result = this!;
+    for (final List<String> pattern in patterns) {
+      result = result.replaceAll(RegExp(pattern[0]), pattern[1]);
+    }
+    return result;
+  }
+
+  String? toKeyword() {
+    return removeVietnameseDiacritics()?.toLowerCase().replaceAll(
+      RegExp('[^a-z0-9]'),
+      '',
+    );
+  }
 }

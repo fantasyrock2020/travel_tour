@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/asset_generator/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class CImageView extends StatelessWidget {
@@ -36,7 +37,7 @@ class CImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget wd = const SizedBox.shrink();
+    Widget wd = MyAssets.imagesPlaceholder.image(fit: BoxFit.cover);
 
     if (url == null || url!.length < 10) {
       wd = emptyWidget ?? wd;
@@ -53,7 +54,10 @@ class CImageView extends StatelessWidget {
         errorWidget:
             errorBuilder ??
             (BuildContext context, String url, Object error) {
-              return emptyWidget ?? wd;
+              return ClipRRect(
+                borderRadius: borderRadius ?? .circular(radius),
+                child: emptyWidget ?? wd,
+              );
             },
       );
     }

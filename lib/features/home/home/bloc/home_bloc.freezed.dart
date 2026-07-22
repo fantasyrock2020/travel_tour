@@ -206,7 +206,7 @@ String toString() {
 /// @nodoc
 mixin _$HomeHomeState {
 
- bool get success;
+ bool get success; List<Location?> get locations;
 /// Create a copy of HomeHomeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -217,16 +217,16 @@ $HomeHomeStateCopyWith<HomeHomeState> get copyWith => _$HomeHomeStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeHomeState&&(identical(other.success, success) || other.success == success));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeHomeState&&(identical(other.success, success) || other.success == success)&&const DeepCollectionEquality().equals(other.locations, locations));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,success);
+int get hashCode => Object.hash(runtimeType,success,const DeepCollectionEquality().hash(locations));
 
 @override
 String toString() {
-  return 'HomeHomeState(success: $success)';
+  return 'HomeHomeState(success: $success, locations: $locations)';
 }
 
 
@@ -237,7 +237,7 @@ abstract mixin class $HomeHomeStateCopyWith<$Res>  {
   factory $HomeHomeStateCopyWith(HomeHomeState value, $Res Function(HomeHomeState) _then) = _$HomeHomeStateCopyWithImpl;
 @useResult
 $Res call({
- bool success
+ bool success, List<Location?> locations
 });
 
 
@@ -254,10 +254,11 @@ class _$HomeHomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeHomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? success = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? success = null,Object? locations = null,}) {
   return _then(_self.copyWith(
 success: null == success ? _self.success : success // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,locations: null == locations ? _self.locations : locations // ignore: cast_nullable_to_non_nullable
+as List<Location?>,
   ));
 }
 
@@ -342,10 +343,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool success)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool success,  List<Location?> locations)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeHomeState() when $default != null:
-return $default(_that.success);case _:
+return $default(_that.success,_that.locations);case _:
   return orElse();
 
 }
@@ -363,10 +364,10 @@ return $default(_that.success);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool success)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool success,  List<Location?> locations)  $default,) {final _that = this;
 switch (_that) {
 case _HomeHomeState():
-return $default(_that.success);case _:
+return $default(_that.success,_that.locations);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -383,10 +384,10 @@ return $default(_that.success);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool success)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool success,  List<Location?> locations)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeHomeState() when $default != null:
-return $default(_that.success);case _:
+return $default(_that.success,_that.locations);case _:
   return null;
 
 }
@@ -398,10 +399,17 @@ return $default(_that.success);case _:
 
 
 class _HomeHomeState implements HomeHomeState {
-  const _HomeHomeState({this.success = false});
+  const _HomeHomeState({this.success = false, final  List<Location?> locations = const <Location?>[]}): _locations = locations;
   
 
 @override@JsonKey() final  bool success;
+ final  List<Location?> _locations;
+@override@JsonKey() List<Location?> get locations {
+  if (_locations is EqualUnmodifiableListView) return _locations;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_locations);
+}
+
 
 /// Create a copy of HomeHomeState
 /// with the given fields replaced by the non-null parameter values.
@@ -413,16 +421,16 @@ _$HomeHomeStateCopyWith<_HomeHomeState> get copyWith => __$HomeHomeStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeHomeState&&(identical(other.success, success) || other.success == success));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeHomeState&&(identical(other.success, success) || other.success == success)&&const DeepCollectionEquality().equals(other._locations, _locations));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,success);
+int get hashCode => Object.hash(runtimeType,success,const DeepCollectionEquality().hash(_locations));
 
 @override
 String toString() {
-  return 'HomeHomeState(success: $success)';
+  return 'HomeHomeState(success: $success, locations: $locations)';
 }
 
 
@@ -433,7 +441,7 @@ abstract mixin class _$HomeHomeStateCopyWith<$Res> implements $HomeHomeStateCopy
   factory _$HomeHomeStateCopyWith(_HomeHomeState value, $Res Function(_HomeHomeState) _then) = __$HomeHomeStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool success
+ bool success, List<Location?> locations
 });
 
 
@@ -450,10 +458,11 @@ class __$HomeHomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeHomeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? success = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? success = null,Object? locations = null,}) {
   return _then(_HomeHomeState(
 success: null == success ? _self.success : success // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,locations: null == locations ? _self._locations : locations // ignore: cast_nullable_to_non_nullable
+as List<Location?>,
   ));
 }
 

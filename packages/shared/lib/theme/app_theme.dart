@@ -9,10 +9,14 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
+    extensions: const <ThemeExtension<dynamic>>[AppColors.light()],
     colorScheme: ColorScheme.light(
       primary: const AppColors.light().primary,
+      secondary: const AppColors.light().secondary,
       error: const AppColors.light().error,
+      surface: const AppColors.light().surface,
     ),
+    dividerTheme: DividerThemeData(color: const AppColors.light().dividerColor),
     textTheme: TextTheme(
       bodyLarge: AppTextStyles.light().bodyLarge,
       bodyMedium: AppTextStyles.light().bodyMedium,
@@ -31,10 +35,14 @@ class AppTheme {
 
   static ThemeData darkTheme = lightTheme.copyWith(
     brightness: Brightness.dark,
+    extensions: const <ThemeExtension<dynamic>>[AppColors.dark()],
     colorScheme: ColorScheme.dark(
       primary: const AppColors.dark().primary,
+      secondary: const AppColors.dark().secondary,
       error: const AppColors.dark().error,
+      surface: const AppColors.dark().surface,
     ),
+    dividerTheme: DividerThemeData(color: const AppColors.dark().dividerColor),
     textTheme: TextTheme(
       bodyLarge: AppTextStyles.dark().bodyLarge,
       bodyMedium: AppTextStyles.dark().bodyMedium,

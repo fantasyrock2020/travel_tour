@@ -1,7 +1,7 @@
 class AppRoutes {
   const AppRoutes._();
 
+  static const String splash = '/splash';
   static const String home = '/home';
-  static const String user = '/user';
-  static const String todo = '/todo';
+  static const String place = '/place';
 }

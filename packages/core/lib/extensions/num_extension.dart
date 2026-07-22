@@ -19,7 +19,10 @@ extension NumExtension on num? {
   /// Formats number as currency (default: USD)
   String formatCurrency({String symbol = r'$', int decimals = 2}) {
     final num value = this ?? 0;
-    final NumberFormat format = NumberFormat.currency(symbol: symbol, decimalDigits: decimals);
+    final NumberFormat format = NumberFormat.currency(
+      symbol: symbol,
+      decimalDigits: decimals,
+    );
     return format.format(value);
   }
 
@@ -72,5 +75,56 @@ extension NumExtension on num? {
     }
 
     return '${size.toStringAsFixed(2)} ${units[unitIndex]}';
+  }
+
+  String? priceLevelToText() {
+    switch (orZero) {
+      case 1:
+        return '~50,000 VND';
+      case 2:
+        return '50,000 - 150,000 VND';
+      case 3:
+        return '150,000 - 400,000 VND';
+      case 4:
+        return '400,000+ VND';
+      default:
+        return null;
+    }
+  }
+
+  String formatDistance() {
+    if (orZero < 1) {
+      final int meters = (orZero * 1000).round();
+      return '$meters m';
+    }
+    return '${orZero.toStringAsFixed(1)} km';
+  }
+
+  String formatPriceVnd() {
+    if (orZero >= 1000000) {
+      final double millions = orZero / 1000000;
+      // Drop trailing ".0" for whole numbers (1tr instead of 1.0tr)
+      final String formatted = millions == millions.truncateToDouble()
+          ? millions.toInt().toString()
+          : millions.toStringAsFixed(1);
+      return '${formatted}tr';
+    }
+
+    if (orZero >= 1000) {
+      final double thousands = orZero / 1000;
+      final String formatted = thousands == thousands.truncateToDouble()
+          ? thousands.toInt().toString()
+          : thousands.toStringAsFixed(1);
+      return '${formatted}k';
+    }
+
+    return orZero.toString();
+  }
+
+  String priceSymbol() {
+    if (this == null) {
+      return '';
+    }
+    return r'$' * orZero.toInt();
   }
 }

@@ -12,7 +12,7 @@
 import 'package:data/di/di.dart' as _i575;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:project_structure/di/data.injector.module.dart' as _i1053;
+import 'package:travel_tour/di/data.injector.module.dart' as _i755;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -21,7 +21,7 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    await _i1053.ProjectStructurePackageModule().init(gh);
+    await _i755.TravelTourPackageModule().init(gh);
     await _i575.DataPackageModule().init(gh);
     return this;
   }

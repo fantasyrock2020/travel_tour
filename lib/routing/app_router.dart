@@ -14,13 +14,27 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     navigatorKey: rootNavigatorKey,
     observers: <NavigatorObserver>[_routeObserver],
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.splash,
     routes: <RouteBase>[
+      GoRoute(
+        path: AppRoutes.splash,
+        name: AppRoutes.splash,
+        builder: (BuildContext context, GoRouterState state) {
+          return const SplashPage();
+        },
+      ),
       GoRoute(
         path: AppRoutes.home,
         name: AppRoutes.home,
         builder: (BuildContext context, GoRouterState state) {
           return const HomeHomePage();
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.place,
+        name: AppRoutes.place,
+        builder: (BuildContext context, GoRouterState state) {
+          return HomePlacePage(argument: state.uri.queryParameters);
         },
       ),
     ],

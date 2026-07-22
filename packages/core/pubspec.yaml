@@ -16,7 +16,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  dio: ^5.9.2
+  dio: ^5.10.0
   freezed_annotation: ^3.1.0
   get_it: ^9.2.1
   injectable: ^3.0.0
@@ -28,18 +28,21 @@ dependencies:
   domain:
     path: '../../domain'
 
-  project_structure:
+  travel_tour:
     path: '../../'
 
-  flutter_secure_storage: ^10.0.0
+  flutter_secure_storage: ^10.3.1
   bloc: ^9.2.1
   intl: ^0.20.2
 
   shared:
     path: '../shared'
-  shared_preferences: ^2.5.4
+  shared_preferences: ^2.5.5
   flutter_bloc: ^9.1.1
-  connectivity_plus: ^7.1.1
+  connectivity_plus: ^7.2.0
+  geocoding: ^5.0.0
+  geolocator: ^14.0.3
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +65,7 @@ flutter_gen:
   assets:
     enabled: true
     outputs:
+      package_parameter_enabled: true
       class_name: MyAssets
       style: camel-case
 

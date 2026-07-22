@@ -3,5 +3,7 @@ export 'data/data.dart';
 export 'services/services.dart';
 export 'config/config.dart';
 export 'bloc/bloc.dart';
+export 'enums/place_enums.dart';
+export 'enums/category_enums.dart';
 export 'extensions/extensions.dart';
 export 'export_dependencies.dart';

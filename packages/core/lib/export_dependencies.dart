@@ -4,3 +4,4 @@ export 'package:bloc/bloc.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:json_annotation/json_annotation.dart';
 export 'package:dio/dio.dart';
+export 'package:url_launcher/url_launcher.dart';

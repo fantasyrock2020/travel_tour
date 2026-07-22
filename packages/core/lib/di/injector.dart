@@ -1,15 +1,15 @@
 import 'package:data/di/di.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:project_structure/di/data.injector.module.dart'
-    show ProjectStructurePackageModule;
+import 'package:travel_tour/di/data.injector.module.dart'
+    show TravelTourPackageModule;
 import 'injector.config.dart';
 
 final GetIt getIt = GetIt.instance;
 
 @InjectableInit(
   externalPackageModulesBefore: <ExternalModule>[
-    ExternalModule(ProjectStructurePackageModule),
+    ExternalModule(TravelTourPackageModule),
     ExternalModule(DataPackageModule),
   ],
 )

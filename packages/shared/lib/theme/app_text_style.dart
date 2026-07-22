@@ -126,10 +126,10 @@ class AppTextStyles {
   }
 
   factory AppTextStyles.light() =>
-      AppTextStyles._(textColor: const AppColors.light().primary);
+      AppTextStyles._(textColor: const AppColors.light().textColor);
 
   factory AppTextStyles.dark() =>
-      AppTextStyles._(textColor: const AppColors.dark().primary);
+      AppTextStyles._(textColor: const AppColors.dark().textColor);
 
   late final TextStyle displayLarge;
   late final TextStyle displayMedium;

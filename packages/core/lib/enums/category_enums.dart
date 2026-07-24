@@ -79,7 +79,7 @@ extension PlaceCategoryEnumX on PlaceCategoryEnum {
       case PlaceCategoryEnum.coffee:
         return <String>['coffee', 'Coffee', 'Cà phê', 'Kafe'];
       case PlaceCategoryEnum.relax:
-        return <String>['relax', 'crelax', 'Nghỉ ngơi', 'Spa', 'Massage'];
+        return <String>['relax', 'crelax', 'Nghỉ ngơi'];
       case PlaceCategoryEnum.park:
         return <String>['park', 'Công viên', 'Thảm cỏ'];
       case PlaceCategoryEnum.playground:
@@ -97,65 +97,9 @@ extension PlaceCategoryEnumX on PlaceCategoryEnum {
       case PlaceCategoryEnum.luxury:
         return <String>[
           'luxury',
-          'cstay',
-          'stay',
           'Luxury',
           'Sang trọng',
-          'Khách sạn',
         ];
     }
   }
-
-  /// Stable string id for storage/JSON (e.g. matches your categoryId field)
-  String get id {
-    switch (this) {
-      case PlaceCategoryEnum.food:
-        return 'food';
-      case PlaceCategoryEnum.snack:
-        return 'snack';
-      case PlaceCategoryEnum.coffee:
-        return 'coffee';
-      case PlaceCategoryEnum.relax:
-        return 'relax';
-      case PlaceCategoryEnum.park:
-        return 'park';
-      case PlaceCategoryEnum.playground:
-        return 'playground';
-      case PlaceCategoryEnum.fashion:
-        return 'fashion';
-      case PlaceCategoryEnum.date:
-        return 'date';
-      case PlaceCategoryEnum.luxury:
-        return 'luxury';
-    }
-  }
 }
-
-/// Parses a raw category string (Vietnamese label or English source value
-/// like "Đồ ăn", "Coffee", "Date") into a PlaceCategoryEnum.
-PlaceCategoryEnum? parseCategory(String raw) {
-  switch (raw.trim()) {
-    case 'Đồ ăn':
-      return PlaceCategoryEnum.food;
-    case 'Ăn vặt':
-      return PlaceCategoryEnum.snack;
-    case 'Coffee':
-      return PlaceCategoryEnum.coffee;
-    case 'Nghỉ ngơi':
-      return PlaceCategoryEnum.relax;
-    case 'Công viên':
-      return PlaceCategoryEnum.park;
-    case 'Khu vui chơi':
-      return PlaceCategoryEnum.playground;
-    case 'Thời trang':
-      return PlaceCategoryEnum.fashion;
-    case 'Date':
-      return PlaceCategoryEnum.date;
-    case 'Luxury':
-      return PlaceCategoryEnum.luxury;
-    default:
-      return null;
-  }
-}
-
-

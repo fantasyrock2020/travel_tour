@@ -14,7 +14,6 @@ class LocationService with LoggerService {
   static final LocationService _instance = LocationService._();
   static LocationService get intance => _instance;
 
-  final Geocoding _geocoding = Geocoding();
   Position? currentPosition;
   LocationAddressModel? currentPlace;
 
@@ -80,7 +79,7 @@ class LocationService with LoggerService {
   double _degToRad(double deg) => deg * (math.pi / 180.0);
 
   Future<void> getAddressFromCoordinates(double lat, double lng) async {
-    final List<Placemark> placemarks = await _geocoding
+    final List<Placemark> placemarks = await Geocoding()
         .placemarkFromCoordinates(lat, lng);
 
     if (placemarks.isEmpty) {
